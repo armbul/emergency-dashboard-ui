@@ -16,3 +16,11 @@ Seed-7 held-out synthetic result: 15/16 correct, accuracy 0.9375, macro F1
 This first version has no dashboard integration or real incident benchmark.
 
 Next priority: batch JSONL inference with record-level error reporting.
+
+## 2026-11-22: project walkthrough
+
+Added PROJECT_EXPLAINED.md with an input-to-output walkthrough, exact matrix
+shapes and parameter count, training and validation choices, prediction fields,
+reproduction commands, test coverage, baseline interpretation and next steps.
+Linked it from the package README. Checked the explanations against the current
+implementation and recorded baseline. No model behaviour or parameters changed.

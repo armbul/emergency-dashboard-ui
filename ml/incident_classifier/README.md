@@ -4,6 +4,12 @@ A complete local research pipeline for categorising short incident descriptions 
 `fire`, `flood`, `medical`, and `road_collision`. This is a new ML subproject of the
 emergency dashboard. It does not yet connect to the dashboard or dispatch services.
 
+## Understand the project
+
+Read [How Incident ML works](PROJECT_EXPLAINED.md) for a detailed walkthrough of
+the problem, architecture, training process, data splits, example predictions,
+test results and known failure cases.
+
 ## What works
 
 - A trainable embedding layer and two nonlinear hidden layers, implemented in NumPy.
