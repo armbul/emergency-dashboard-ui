@@ -1,0 +1,45 @@
+{
+  "samples": 16,
+  "accuracy": 0.9375,
+  "macro_f1": 0.9365079365079365,
+  "negative_log_likelihood": 0.5179436158692104,
+  "confusion_matrix": [
+    [
+      3,
+      1,
+      0,
+      0
+    ],
+    [
+      0,
+      4,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      4,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      4
+    ]
+  ],
+  "labels": [
+    "fire",
+    "flood",
+    "medical",
+    "road_collision"
+  ],
+  "temperature": 0.5,
+  "mean_vocabulary_coverage": 0.9489583333333333,
+  "data_scope": "Synthetic smoke-test corpus; not a real-world benchmark",
+  "seed": 7,
+  "epochs": 180,
+  "initial_train_loss": 1.3987854966468867,
+  "final_train_loss": 2.469304755495711e-08
+}

@@ -1,0 +1,76 @@
+{"text": "Smoke and flames coming from a house", "label": "fire", "split": "train", "source": "authored_synthetic"}
+{"text": "A shop is burning near the market", "label": "fire", "split": "train", "source": "authored_synthetic"}
+{"text": "Fire spreading through a warehouse", "label": "fire", "split": "train", "source": "authored_synthetic"}
+{"text": "The kitchen is on fire with thick smoke", "label": "fire", "split": "train", "source": "authored_synthetic"}
+{"text": "Flames visible inside an office building", "label": "fire", "split": "train", "source": "authored_synthetic"}
+{"text": "A vehicle caught fire in the parking area", "label": "fire", "split": "train", "source": "authored_synthetic"}
+{"text": "Burning rubbish has spread to nearby homes", "label": "fire", "split": "train", "source": "authored_synthetic"}
+{"text": "Smoke pouring out of a school building", "label": "fire", "split": "train", "source": "authored_synthetic"}
+{"text": "An electrical fire started in the workshop", "label": "fire", "split": "train", "source": "authored_synthetic"}
+{"text": "Trees are burning beside the road", "label": "fire", "split": "train", "source": "authored_synthetic"}
+{"text": "Moto mkubwa unawaka ndani ya nyumba", "label": "fire", "split": "train", "source": "authored_synthetic"}
+{"text": "Moshi na moto katika duka la soko", "label": "fire", "split": "train", "source": "authored_synthetic"}
+{"text": "Smoke and flames inside the shop", "label": "fire", "split": "validation", "source": "authored_synthetic"}
+{"text": "The warehouse roof is burning", "label": "fire", "split": "validation", "source": "authored_synthetic"}
+{"text": "Moto unawaka katika shule", "label": "fire", "split": "validation", "source": "authored_synthetic"}
+{"text": "Flames are spreading from the kitchen", "label": "fire", "split": "test", "source": "authored_synthetic"}
+{"text": "Thick smoke coming from the workshop", "label": "fire", "split": "test", "source": "authored_synthetic"}
+{"text": "The office building has caught fire", "label": "fire", "split": "test", "source": "authored_synthetic"}
+{"text": "Moshi unatoka ndani ya nyumba", "label": "fire", "split": "test", "source": "authored_synthetic"}
+{"text": "River water has flooded several homes", "label": "flood", "split": "train", "source": "authored_synthetic"}
+{"text": "Heavy rain caused flooding on the road", "label": "flood", "split": "train", "source": "authored_synthetic"}
+{"text": "People trapped by rising flood water", "label": "flood", "split": "train", "source": "authored_synthetic"}
+{"text": "Water entering houses after the river overflowed", "label": "flood", "split": "train", "source": "authored_synthetic"}
+{"text": "Flooding has submerged the bridge", "label": "flood", "split": "train", "source": "authored_synthetic"}
+{"text": "The drainage channel overflowed into the market", "label": "flood", "split": "train", "source": "authored_synthetic"}
+{"text": "Rain water filling the ground floor", "label": "flood", "split": "train", "source": "authored_synthetic"}
+{"text": "A village is cut off by flood water", "label": "flood", "split": "train", "source": "authored_synthetic"}
+{"text": "The river bank collapsed after heavy rain", "label": "flood", "split": "train", "source": "authored_synthetic"}
+{"text": "Flood water washed away the footbridge", "label": "flood", "split": "train", "source": "authored_synthetic"}
+{"text": "Mafuriko yameingia ndani ya nyumba", "label": "flood", "split": "train", "source": "authored_synthetic"}
+{"text": "Maji ya mto yamefurika baada ya mvua", "label": "flood", "split": "train", "source": "authored_synthetic"}
+{"text": "Flood water entering the shop", "label": "flood", "split": "validation", "source": "authored_synthetic"}
+{"text": "Heavy rain has submerged the road", "label": "flood", "split": "validation", "source": "authored_synthetic"}
+{"text": "Mafuriko baada ya mvua kubwa", "label": "flood", "split": "validation", "source": "authored_synthetic"}
+{"text": "The river has overflowed beside the village", "label": "flood", "split": "test", "source": "authored_synthetic"}
+{"text": "Rising water is filling several houses", "label": "flood", "split": "test", "source": "authored_synthetic"}
+{"text": "A bridge was washed away by flooding", "label": "flood", "split": "test", "source": "authored_synthetic"}
+{"text": "Maji yameingia katika nyumba nyingi", "label": "flood", "split": "test", "source": "authored_synthetic"}
+{"text": "A person collapsed and needs an ambulance", "label": "medical", "split": "train", "source": "authored_synthetic"}
+{"text": "Someone is unconscious inside the office", "label": "medical", "split": "train", "source": "authored_synthetic"}
+{"text": "A child is having difficulty breathing", "label": "medical", "split": "train", "source": "authored_synthetic"}
+{"text": "An injured person needs medical assistance", "label": "medical", "split": "train", "source": "authored_synthetic"}
+{"text": "A patient has severe chest pain", "label": "medical", "split": "train", "source": "authored_synthetic"}
+{"text": "Someone is bleeding heavily after a fall", "label": "medical", "split": "train", "source": "authored_synthetic"}
+{"text": "A woman is having a seizure at the market", "label": "medical", "split": "train", "source": "authored_synthetic"}
+{"text": "An elderly person cannot breathe properly", "label": "medical", "split": "train", "source": "authored_synthetic"}
+{"text": "A patient needs urgent hospital transport", "label": "medical", "split": "train", "source": "authored_synthetic"}
+{"text": "A child fainted at the school", "label": "medical", "split": "train", "source": "authored_synthetic"}
+{"text": "Mgonjwa anahitaji msaada wa matibabu", "label": "medical", "split": "train", "source": "authored_synthetic"}
+{"text": "Mtu amezimia na anahitaji ambulansi", "label": "medical", "split": "train", "source": "authored_synthetic"}
+{"text": "A person collapsed in the market", "label": "medical", "split": "validation", "source": "authored_synthetic"}
+{"text": "A child needs urgent medical assistance", "label": "medical", "split": "validation", "source": "authored_synthetic"}
+{"text": "Mgonjwa anahitaji ambulansi haraka", "label": "medical", "split": "validation", "source": "authored_synthetic"}
+{"text": "Someone is unconscious at the school", "label": "medical", "split": "test", "source": "authored_synthetic"}
+{"text": "An elderly patient has chest pain", "label": "medical", "split": "test", "source": "authored_synthetic"}
+{"text": "The injured woman needs hospital transport", "label": "medical", "split": "test", "source": "authored_synthetic"}
+{"text": "Mtu anahitaji msaada wa matibabu haraka", "label": "medical", "split": "test", "source": "authored_synthetic"}
+{"text": "Two vehicles collided on the highway", "label": "road_collision", "split": "train", "source": "authored_synthetic"}
+{"text": "A bus crashed into a truck", "label": "road_collision", "split": "train", "source": "authored_synthetic"}
+{"text": "A motorcycle was hit by a car", "label": "road_collision", "split": "train", "source": "authored_synthetic"}
+{"text": "Traffic collision blocking the main road", "label": "road_collision", "split": "train", "source": "authored_synthetic"}
+{"text": "A lorry overturned near the junction", "label": "road_collision", "split": "train", "source": "authored_synthetic"}
+{"text": "A car crashed into a roadside barrier", "label": "road_collision", "split": "train", "source": "authored_synthetic"}
+{"text": "Several vehicles involved in a highway accident", "label": "road_collision", "split": "train", "source": "authored_synthetic"}
+{"text": "A bus rolled over beside the road", "label": "road_collision", "split": "train", "source": "authored_synthetic"}
+{"text": "A truck struck a pedestrian at the crossing", "label": "road_collision", "split": "train", "source": "authored_synthetic"}
+{"text": "Two cars collided near the bridge", "label": "road_collision", "split": "train", "source": "authored_synthetic"}
+{"text": "Ajali ya magari mawili barabarani", "label": "road_collision", "split": "train", "source": "authored_synthetic"}
+{"text": "Basi limegongana na lori kwenye barabara", "label": "road_collision", "split": "train", "source": "authored_synthetic"}
+{"text": "A truck collided with a car", "label": "road_collision", "split": "validation", "source": "authored_synthetic"}
+{"text": "A motorcycle accident near the junction", "label": "road_collision", "split": "validation", "source": "authored_synthetic"}
+{"text": "Ajali ya basi barabarani", "label": "road_collision", "split": "validation", "source": "authored_synthetic"}
+{"text": "A bus and a lorry collided on the road", "label": "road_collision", "split": "test", "source": "authored_synthetic"}
+{"text": "Several cars crashed beside the market", "label": "road_collision", "split": "test", "source": "authored_synthetic"}
+{"text": "An overturned truck is blocking traffic", "label": "road_collision", "split": "test", "source": "authored_synthetic"}
+{"text": "Magari yamegongana kwenye barabara", "label": "road_collision", "split": "test", "source": "authored_synthetic"}
