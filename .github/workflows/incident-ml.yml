@@ -32,3 +32,8 @@ jobs:
           python -m incident_ml.cli train --data data/synthetic_incidents.jsonl --output artifacts/ci-model
           python -m incident_ml.cli evaluate --data data/synthetic_incidents.jsonl --model artifacts/ci-model
           python -m incident_ml.cli predict --model artifacts/ci-model --text "Smoke and flames inside a building"
+
+      - name: Exercise batch inference
+        run: |
+          python -m incident_ml.cli batch-predict --model artifacts/ci-model --input examples/batch_input.jsonl --output artifacts/predictions.jsonl --batch-size 2
+          python -c "import json; from pathlib import Path; rows = [json.loads(line) for line in Path('artifacts/predictions.jsonl').read_text().splitlines()]; assert len(rows) == 3; assert all(row['status'] == 'ok' for row in rows); assert rows[-1]['prediction']['requires_review']"

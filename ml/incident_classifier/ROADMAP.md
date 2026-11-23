@@ -3,7 +3,7 @@
 Select one useful, bounded improvement at a time. Record tests and measured results.
 Avoid changing the fixed synthetic test partition to improve reported metrics.
 
-1. Add batch JSONL inference, line-level validation, and documented error behaviour.
+1. Completed 2026-11-23: batch JSONL inference, line-level validation, and documented error behaviour. See BATCH_INFERENCE.md.
 2. Add a real text baseline comparison and stratified cross-validation on training data.
 3. Add multi-seed summaries and confidence intervals with explicit sample-size caveats.
 4. Measure uncertainty using ensembles; compare review coverage and error rates.

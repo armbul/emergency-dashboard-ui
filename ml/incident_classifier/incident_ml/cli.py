@@ -3,11 +3,39 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
+from contextlib import ExitStack
 from pathlib import Path
 
 import numpy as np
 
 from .model import IncidentClassifier, classification_metrics, softmax, tokenize
+from .batch import predict_jsonl
+
+
+def batch_predict(args, parser):
+    """Keep predictions on the selected output and a compact summary on stderr."""
+    try:
+        if args.input != "-" and args.output != "-":
+            source, destination = Path(args.input), Path(args.output)
+            if source.resolve() == destination.resolve() or (destination.exists() and source.samefile(destination)):
+                raise ValueError("Input and output must be different files")
+        if args.batch_size < 1 or not 0 <= args.threshold <= 1 or not 0 <= args.min_coverage <= 1:
+            raise ValueError("Expected positive batch size and thresholds in [0, 1]")
+        model = IncidentClassifier.load(args.model)
+        counts = {"records": 0, "succeeded": 0, "failed": 0}
+        with ExitStack() as stack:
+            source = sys.stdin if args.input == "-" else stack.enter_context(open(args.input, encoding="utf-8"))
+            output = sys.stdout if args.output == "-" else stack.enter_context(open(args.output, "w", encoding="utf-8"))
+            for result in predict_jsonl(source, model, batch_size=args.batch_size,
+                                        threshold=args.threshold, min_coverage=args.min_coverage):
+                output.write(json.dumps(result, ensure_ascii=False, allow_nan=False) + "\n")
+                counts["records"] += 1
+                counts["succeeded" if result["status"] == "ok" else "failed"] += 1
+        print(json.dumps(counts), file=sys.stderr)
+        return 1 if counts["failed"] else 0
+    except (OSError, ValueError) as error:
+        parser.exit(2, f"batch-predict: {error}\n")
 
 
 def read_dataset(path: str | Path) -> list[dict]:
@@ -46,7 +74,16 @@ def main():
     predict.add_argument("--model", required=True)
     predict.add_argument("--text", required=True)
     predict.add_argument("--threshold", type=float, default=0.7)
+    batch = commands.add_parser("batch-predict", help="Predict JSONL with one result per input line")
+    batch.add_argument("--model", required=True)
+    batch.add_argument("--input", required=True, help="UTF-8 JSONL path, or - for stdin")
+    batch.add_argument("--output", default="-", help="Output JSONL path, or - for stdout (default)")
+    batch.add_argument("--batch-size", type=int, default=128)
+    batch.add_argument("--threshold", type=float, default=0.7)
+    batch.add_argument("--min-coverage", type=float, default=0.35)
     args = parser.parse_args()
+    if args.command == "batch-predict":
+        return batch_predict(args, parser)
     if args.command == "predict":
         model = IncidentClassifier.load(args.model)
         print(json.dumps(model.predict([args.text], threshold=args.threshold)[0], indent=2))
@@ -75,4 +112,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())

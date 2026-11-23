@@ -10,6 +10,12 @@ Read [How Incident ML works](PROJECT_EXPLAINED.md) for a detailed walkthrough of
 the problem, architecture, training process, data splits, example predictions,
 test results and known failure cases.
 
+## Batch inference
+
+Use `batch-predict` to classify a JSONL file with ordered predictions and a clear
+error for each invalid line. See [the batch inference guide](BATCH_INFERENCE.md)
+for examples, output fields, exit codes, streaming behaviour and limitations.
+
 ## What works
 
 - A trainable embedding layer and two nonlinear hidden layers, implemented in NumPy.

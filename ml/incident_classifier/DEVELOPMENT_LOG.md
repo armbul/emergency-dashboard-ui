@@ -24,3 +24,28 @@ shapes and parameter count, training and validation choices, prediction fields,
 reproduction commands, test coverage, baseline interpretation and next steps.
 Linked it from the package README. Checked the explanations against the current
 implementation and recorded baseline. No model behaviour or parameters changed.
+
+## 2026-11-23: batch JSONL inference
+
+Added batch-predict for UTF-8 JSONL files and stdin. Results preserve physical
+line numbers, valid optional IDs and input order. Invalid records produce stable
+error codes without hiding later records. The iterator uses bounded chunks and
+keeps summaries on stderr. Exit codes distinguish success, record errors and
+supported command failures. File-path checks prevent overwriting the input,
+including through hard links. Added a synthetic example, a detailed usage guide,
+README and roadmap links, and batch execution to the existing CI workflow.
+
+Local verification: all 25 tests passed, including 14 new batch tests. The valid
+three-record example produced three predictions. A mixed five-line example
+produced three predictions and two error records, in order, with exit code 1.
+The errors were invalid_json and empty_line. The unknown-vocabulary example
+retained its review flag. The seed-7 training command reproduced the original
+baseline report exactly. No training data, neural parameters or inference rules
+were changed by this feature.
+
+Limitations: input line size is not capped; memory depends on line length and
+vocabulary as well as batch size. Interrupted or failed output is not atomic and
+can be partial. No throughput or real-world accuracy improvement is claimed.
+
+Next priority: a simple text baseline and stratified cross-validation on training
+data, keeping the fixed test partition out of model selection.

@@ -253,7 +253,8 @@ expected review checks.
 
 The suite also covers duplicate text detection, invalid labels and thresholds,
 Unicode tokenisation, temperature validation, and macro F1 when a category has
-no examples in the supplied metric input. There are currently 11 test methods.
+no examples in the supplied metric input. The initial suite contained 11 test methods. Batch inference adds 14 more,
+for 25 test methods in the current suite.
 
 The GitHub workflow runs the tests and the train, evaluate and predict commands
 on Python 3.10 and 3.12. This checks the path from source code to a usable model,
@@ -261,9 +262,13 @@ alongside the smaller numerical tests.
 
 ## What should change next
 
-Batch JSONL inference is the next feature. It should accept multiple descriptions,
-preserve their order, and report malformed records clearly without silently
-dropping them. That will make it easier to inspect larger experiments.
+Batch JSONL inference is now available. It accepts multiple descriptions,
+preserves their order, and reports invalid records without silently dropping
+them. See [the batch inference guide](BATCH_INFERENCE.md) for the input schema,
+examples, exit codes and implementation details.
+
+The next step is a text baseline comparison with stratified cross-validation
+on training data, keeping the fixed test partition out of model selection.
 
 The bigger modelling questions need representative data. An appropriate next
 comparison is a simple text baseline, followed by multi-seed evaluation and then
