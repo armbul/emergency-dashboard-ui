@@ -16,6 +16,12 @@ Use `batch-predict` to classify a JSONL file with ordered predictions and a clea
 error for each invalid line. See [the batch inference guide](BATCH_INFERENCE.md)
 for examples, output fields, exit codes, streaming behaviour and limitations.
 
+## Compare models
+
+The `cross-validate` command compares the neural classifier with multinomial
+naive Bayes on training-only stratified folds. Read [the comparison guide](CROSS_VALIDATION.md)
+for reproduction steps, fold isolation, recorded results and their limits.
+
 ## What works
 
 - A trainable embedding layer and two nonlinear hidden layers, implemented in NumPy.

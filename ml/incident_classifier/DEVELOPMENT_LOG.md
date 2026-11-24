@@ -49,3 +49,27 @@ can be partial. No throughput or real-world accuracy improvement is claimed.
 
 Next priority: a simple text baseline and stratified cross-validation on training
 data, keeping the fixed test partition out of model selection.
+
+## 2026-11-24: training-only model comparison
+
+Added a token-count multinomial naive Bayes baseline, seeded stratified folds,
+and the cross-validate command. Both models fit fresh vocabularies inside each
+fold. Neural temperature remains 1.0 with no held-out-fold calibration. Reports
+contain configuration, training-content digest, fold indices, per-fold metrics,
+pooled out-of-fold metrics and probabilities. Added a detailed comparison guide,
+a recorded report, README links and comparison execution in CI.
+
+Local verification: all 34 tests passed, including nine new evaluation tests.
+Tests cover a hand-calculated naive Bayes result, class-stratified fold coverage,
+training-only vocabulary, excluded nontraining records, deterministic reports,
+pooled metric reproduction, invalid configuration and CLI behaviour. The default
+seed-7 run on 48 synthetic training records gave 31/48 correct for the neural
+model (accuracy 0.6458333333, macro F1 0.6278983816) and 32/48 for naive Bayes
+(accuracy 0.6666666667, macro F1 0.6574603175). The one-record difference does
+not establish superiority. No fixed test results were used for this comparison.
+
+Limitations: related synthetic phrases may span folds; fold score variation is
+not a confidence interval; the neural model is uncalibrated in this comparison.
+The original data, model implementation and baseline report are unchanged.
+
+Next priority: multi-seed summaries with explicit small-sample caveats.

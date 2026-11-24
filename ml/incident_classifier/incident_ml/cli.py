@@ -11,6 +11,7 @@ import numpy as np
 
 from .model import IncidentClassifier, classification_metrics, softmax, tokenize
 from .batch import predict_jsonl
+from .validation import cross_validate
 
 
 def batch_predict(args, parser):
@@ -81,7 +82,21 @@ def main():
     batch.add_argument("--batch-size", type=int, default=128)
     batch.add_argument("--threshold", type=float, default=0.7)
     batch.add_argument("--min-coverage", type=float, default=0.35)
+    comparison = commands.add_parser("cross-validate", help="Compare neural and naive Bayes using training data only")
+    comparison.add_argument("--data", required=True)
+    comparison.add_argument("--folds", type=int, default=3)
+    comparison.add_argument("--seed", type=int, default=7)
+    comparison.add_argument("--epochs", type=int, default=180)
+    comparison.add_argument("--alpha", type=float, default=1.0)
     args = parser.parse_args()
+    if args.command == "cross-validate":
+        try:
+            report = cross_validate(read_dataset(args.data), folds=args.folds, seed=args.seed,
+                                    epochs=args.epochs, alpha=args.alpha)
+        except (OSError, ValueError) as error:
+            parser.error(str(error))
+        print(json.dumps(report, indent=2, allow_nan=False))
+        return
     if args.command == "batch-predict":
         return batch_predict(args, parser)
     if args.command == "predict":

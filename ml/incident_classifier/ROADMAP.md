@@ -4,7 +4,7 @@ Select one useful, bounded improvement at a time. Record tests and measured resu
 Avoid changing the fixed synthetic test partition to improve reported metrics.
 
 1. Completed 2026-11-23: batch JSONL inference, line-level validation, and documented error behaviour. See BATCH_INFERENCE.md.
-2. Add a real text baseline comparison and stratified cross-validation on training data.
+2. Completed 2026-11-24: multinomial naive Bayes comparison and training-only stratified cross-validation. See CROSS_VALIDATION.md.
 3. Add multi-seed summaries and confidence intervals with explicit sample-size caveats.
 4. Measure uncertainty using ensembles; compare review coverage and error rates.
 5. Add a licensed public incident-text dataset importer and provenance tracking.
