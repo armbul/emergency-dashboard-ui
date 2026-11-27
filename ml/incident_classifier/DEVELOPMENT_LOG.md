@@ -73,3 +73,28 @@ not a confidence interval; the neural model is uncalibrated in this comparison.
 The original data, model implementation and baseline report are unchanged.
 
 Next priority: multi-seed summaries with explicit small-sample caveats.
+
+## 2026-11-27: multi-seed comparison
+
+Added compare-seeds to repeat training-only cross-validation with explicit,
+distinct seeds. Reports include seed-level folds and pooled metrics, mean/std/
+min/max summaries, paired neural-minus-naive-Bayes differences and accuracy win
+counts. Duplicate seeds are rejected. Added a detailed guide, a recorded report,
+README links and a two-seed CI example. No inference or training data changed.
+
+Verification: 41 tests passed, including seven new tests covering standalone
+run equivalence, aggregate arithmetic, win counts, excluded partitions, seed
+validation, reproducibility and CLI behaviour. The default five-seed run used
+seeds 7, 17, 27, 37 and 47 with three folds and 180 neural epochs per fit. Mean
+accuracy was 0.6458333333 for neural and 0.6541666667 for naive Bayes. Neural
+accuracy ranged from 0.6041666667 to 0.6875; naive Bayes from 0.6041666667 to
+0.75. Neural won two seeds and naive Bayes three. Mean paired accuracy difference
+was -0.0083333333 for neural minus naive Bayes.
+
+The same 48 synthetic training records are reused across seeds. Seed standard
+deviation and range are descriptive, not independent-sample confidence
+intervals. Inferential intervals are deliberately deferred. The original fixed
+test result and single-seed comparison report are preserved.
+
+Next priority: ensemble uncertainty with review coverage/error evaluation,
+without tuning against the fixed test partition.

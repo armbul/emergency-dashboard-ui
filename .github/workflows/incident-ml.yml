@@ -42,3 +42,8 @@ jobs:
         run: |
           python -m incident_ml.cli cross-validate --data data/synthetic_incidents.jsonl > artifacts/comparison.json
           python -c "import json; from pathlib import Path; r = json.loads(Path('artifacts/comparison.json').read_text()); assert r['training_records'] == 48; assert len(r['folds']) == 3; assert all(m['out_of_fold']['samples'] == 48 for m in r['models'].values())"
+
+      - name: Exercise multi-seed comparison
+        run: |
+          python -m incident_ml.cli compare-seeds --data data/synthetic_incidents.jsonl --seeds 7 17 > artifacts/multi_seed.json
+          python -c "import json; from pathlib import Path; r = json.loads(Path('artifacts/multi_seed.json').read_text()); assert r['training_records'] == 48; assert len(r['runs']) == 2; assert sum(r['accuracy_wins'].values()) == 2; assert len(r['paired_neural_minus_nb']['accuracy']['per_seed']) == 2"

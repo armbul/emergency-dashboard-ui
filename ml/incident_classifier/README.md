@@ -22,6 +22,12 @@ The `cross-validate` command compares the neural classifier with multinomial
 naive Bayes on training-only stratified folds. Read [the comparison guide](CROSS_VALIDATION.md)
 for reproduction steps, fold isolation, recorded results and their limits.
 
+## Check seed sensitivity
+
+Use `compare-seeds` to repeat the training-only comparison across distinct seeds.
+Read [the multi-seed guide](MULTI_SEED_COMPARISON.md) for mean and range summaries,
+paired model differences, recorded results and the limits of this experiment.
+
 ## What works
 
 - A trainable embedding layer and two nonlinear hidden layers, implemented in NumPy.

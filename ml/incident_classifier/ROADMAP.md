@@ -5,7 +5,7 @@ Avoid changing the fixed synthetic test partition to improve reported metrics.
 
 1. Completed 2026-11-23: batch JSONL inference, line-level validation, and documented error behaviour. See BATCH_INFERENCE.md.
 2. Completed 2026-11-24: multinomial naive Bayes comparison and training-only stratified cross-validation. See CROSS_VALIDATION.md.
-3. Add multi-seed summaries and confidence intervals with explicit sample-size caveats.
+3. Completed 2026-11-27: multi-seed summaries and paired differences. See MULTI_SEED_COMPARISON.md. Inferential confidence intervals remain deferred pending a design that accounts for dependent folds and representative evaluation data.
 4. Measure uncertainty using ensembles; compare review coverage and error rates.
 5. Add a licensed public incident-text dataset importer and provenance tracking.
 6. Compare learned mean pooling against attention pooling and a small transformer.

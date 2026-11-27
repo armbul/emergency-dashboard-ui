@@ -11,7 +11,7 @@ import numpy as np
 
 from .model import IncidentClassifier, classification_metrics, softmax, tokenize
 from .batch import predict_jsonl
-from .validation import cross_validate
+from .validation import compare_seeds, cross_validate
 
 
 def batch_predict(args, parser):
@@ -88,7 +88,21 @@ def main():
     comparison.add_argument("--seed", type=int, default=7)
     comparison.add_argument("--epochs", type=int, default=180)
     comparison.add_argument("--alpha", type=float, default=1.0)
+    repeated = commands.add_parser("compare-seeds", help="Summarise training-only comparisons across distinct seeds")
+    repeated.add_argument("--data", required=True)
+    repeated.add_argument("--seeds", nargs="+", type=int, default=[7, 17, 27, 37, 47])
+    repeated.add_argument("--folds", type=int, default=3)
+    repeated.add_argument("--epochs", type=int, default=180)
+    repeated.add_argument("--alpha", type=float, default=1.0)
     args = parser.parse_args()
+    if args.command == "compare-seeds":
+        try:
+            report = compare_seeds(read_dataset(args.data), seeds=args.seeds, folds=args.folds,
+                                   epochs=args.epochs, alpha=args.alpha)
+        except (OSError, ValueError) as error:
+            parser.error(str(error))
+        print(json.dumps(report, indent=2, allow_nan=False))
+        return
     if args.command == "cross-validate":
         try:
             report = cross_validate(read_dataset(args.data), folds=args.folds, seed=args.seed,

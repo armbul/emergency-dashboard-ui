@@ -121,7 +121,7 @@ performance. Repeatedly choosing settings against these folds would make them
 part of model selection. A later claim about generalisation would need suitable
 independent data or a properly nested evaluation design.
 
-The next improvement is a multi-seed summary showing whether the comparison
-changes under different fold assignments and neural initialisations. Wider
-representative data remains more important than a favourable number on this
-toy corpus.
+The multi-seed summary is now available through compare-seeds. See
+[MULTI_SEED_COMPARISON.md](MULTI_SEED_COMPARISON.md) for results under different
+fold assignments and neural initialisations. Wider representative data remains
+more important than a favourable number on this toy corpus.

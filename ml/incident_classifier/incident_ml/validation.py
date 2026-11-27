@@ -105,3 +105,48 @@ def cross_validate(rows: list[dict], *, folds: int = 3, seed: int = 7,
             "configuration": {"folds": folds, "seed": seed, "epochs": epochs, "alpha": alpha,
                               "neural_temperature": 1.0, "neural_learning_rate": 0.015},
             "folds": details, "models": summaries}
+
+
+def _describe(values: list[float]) -> dict:
+    """Descriptive variation across runs, not a confidence interval."""
+    return {"mean": float(np.mean(values)), "std": float(np.std(values)),
+            "min": float(np.min(values)), "max": float(np.max(values))}
+
+
+def compare_seeds(rows: list[dict], *, seeds: list[int] | None = None,
+                  folds: int = 3, epochs: int = 180, alpha: float = 1.0) -> dict:
+    """Repeat the same training-only comparison with distinct, explicit seeds.
+
+    Each seed changes fold assignments and neural initialisation together.
+    Paired differences compare the two models within the same seed's folds.
+    All runs reuse one corpus, so repeated predictions are not new observations.
+    """
+    seeds = [7, 17, 27, 37, 47] if seeds is None else list(seeds)
+    if len(seeds) < 2 or any(type(seed) is not int or seed < 0 for seed in seeds):
+        raise ValueError("Provide at least two nonnegative integer seeds")
+    if len(set(seeds)) != len(seeds):
+        raise ValueError("Seeds must be distinct; duplicates would overweight a run")
+    runs = []
+    for seed in seeds:
+        report = cross_validate(rows, folds=folds, seed=seed, epochs=epochs, alpha=alpha)
+        runs.append({"seed": seed, "folds": report["folds"],
+                     "models": {name: summary["out_of_fold"] for name, summary in report["models"].items()}})
+    metrics = ("accuracy", "macro_f1", "negative_log_likelihood")
+    models = {name: {metric: _describe([run["models"][name][metric] for run in runs]) for metric in metrics}
+              for name in ("neural", "multinomial_nb")}
+    differences = {}
+    for metric in metrics:
+        values = [run["models"]["neural"][metric] - run["models"]["multinomial_nb"][metric] for run in runs]
+        differences[metric] = {**_describe(values), "per_seed": values}
+    wins = {"neural": 0, "multinomial_nb": 0, "ties": 0}
+    for run in runs:
+        a, b = run["models"]["neural"]["accuracy"], run["models"]["multinomial_nb"]["accuracy"]
+        wins["neural" if a > b else "multinomial_nb" if b > a else "ties"] += 1
+    return {"format_version": 1, "data_scope": report["data_scope"],
+            "training_records": report["training_records"], "training_sha256": report["training_sha256"],
+            "labels": report["labels"],
+            "configuration": {"seeds": seeds, "folds": folds, "epochs": epochs, "alpha": alpha,
+                              "neural_temperature": 1.0, "neural_learning_rate": 0.015},
+            "uncertainty_note": "Descriptive seed variation only; overlapping fitting sets and reuse of the same records do not support independent-sample confidence intervals",
+            "runs": runs, "models": models, "paired_neural_minus_nb": differences,
+            "accuracy_wins": wins}
