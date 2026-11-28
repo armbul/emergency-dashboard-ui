@@ -98,3 +98,28 @@ test result and single-seed comparison report are preserved.
 
 Next priority: ensemble uncertainty with review coverage/error evaluation,
 without tuning against the fixed test partition.
+
+## 2026-11-28: out-of-fold ensemble uncertainty
+
+Added ensemble-evaluate with three independently initialised neural members
+per fold, mean class probabilities, predictive/member entropy, entropy-gap
+mutual information, vote disagreement and confidence/review curves. Both the
+first member and ensemble are evaluated on the same held-out training records.
+Reports retain probabilities and targets for recomputation. No checkpoint or
+existing inference behaviour changes. Added a detailed guide and CI execution.
+
+Verification: 51 tests passed, including ten new tests for analytic uncertainty
+cases, review counts and boundaries, empty-kept null error rates, invalid inputs,
+fold-local vocabulary, excluded partitions, repeatability, standalone reference
+equivalence and CLI behaviour. On 48 synthetic training records with three
+folds, split seed 7 and member seeds 7, 17 and 27, the ensemble got 34/48 right
+(accuracy 0.7083333333, macro F1 0.7070929071). The first member reproduced
+31/48 correct. At threshold 0.9 and minimum vocabulary coverage 0.35, the ensemble
+kept 21 predictions with three errors and flagged 27 for hypothetical review.
+
+These are descriptive curves, not a selected policy. No human reviews were
+performed. Members are uncalibrated, the corpus is synthetic, and overlapping
+folds do not support independent-sample confidence claims. The fixed validation
+and test records are excluded from model fitting and evaluation in this command.
+
+Next priority: licensed public text dataset import with provenance tracking.

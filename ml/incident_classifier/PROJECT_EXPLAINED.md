@@ -256,7 +256,8 @@ Unicode tokenisation, temperature validation, and macro F1 when a category has
 no examples in the supplied metric input. The initial suite contained 11 test methods. Batch inference adds 14 more,
 for 25 test methods at that point. Training-only cross-validation adds nine
 more, bringing that suite to 34 test methods. Seven multi-seed comparison tests
-bring the current total to 41.
+bring that total to 41. Ten ensemble uncertainty tests bring the current
+total to 51.
 
 The GitHub workflow runs the tests and the train, evaluate and predict commands
 on Python 3.10 and 3.12. This checks the path from source code to a usable model,
@@ -273,8 +274,9 @@ A text baseline comparison with training-only stratified cross-validation is
 now available. See [the comparison guide](CROSS_VALIDATION.md) for naive Bayes,
 fold isolation and the recorded results. A [multi-seed comparison](MULTI_SEED_COMPARISON.md)
 now reports variation and paired differences while keeping the fixed test
-partition out of model selection. The next step is an ensemble uncertainty
-experiment with an explicit review coverage/error comparison.
+partition out of model selection. The [ensemble uncertainty experiment](ENSEMBLE_REVIEW.md)
+now provides an explicit confidence/review coverage comparison on held-out
+training folds. The next step is a licensed public dataset importer with provenance.
 
 The bigger modelling questions need representative data. An appropriate next
 comparison is a simple text baseline, followed by multi-seed evaluation and then

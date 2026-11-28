@@ -12,6 +12,7 @@ import numpy as np
 from .model import IncidentClassifier, classification_metrics, softmax, tokenize
 from .batch import predict_jsonl
 from .validation import compare_seeds, cross_validate
+from .ensemble import evaluate_ensemble
 
 
 def batch_predict(args, parser):
@@ -94,7 +95,24 @@ def main():
     repeated.add_argument("--folds", type=int, default=3)
     repeated.add_argument("--epochs", type=int, default=180)
     repeated.add_argument("--alpha", type=float, default=1.0)
+    ensemble = commands.add_parser("ensemble-evaluate", help="Compare ensemble confidence and review coverage on training folds")
+    ensemble.add_argument("--data", required=True)
+    ensemble.add_argument("--member-seeds", nargs="+", type=int, default=[7, 17, 27])
+    ensemble.add_argument("--folds", type=int, default=3)
+    ensemble.add_argument("--split-seed", type=int, default=7)
+    ensemble.add_argument("--epochs", type=int, default=180)
+    ensemble.add_argument("--thresholds", nargs="+", type=float, default=[0.0, 0.5, 0.7, 0.9, 0.99, 1.0])
+    ensemble.add_argument("--min-coverage", type=float, default=0.35)
     args = parser.parse_args()
+    if args.command == "ensemble-evaluate":
+        try:
+            report = evaluate_ensemble(read_dataset(args.data), member_seeds=args.member_seeds,
+                                       folds=args.folds, split_seed=args.split_seed, epochs=args.epochs,
+                                       thresholds=args.thresholds, min_coverage=args.min_coverage)
+        except (OSError, ValueError) as error:
+            parser.error(str(error))
+        print(json.dumps(report, indent=2, allow_nan=False))
+        return
     if args.command == "compare-seeds":
         try:
             report = compare_seeds(read_dataset(args.data), seeds=args.seeds, folds=args.folds,

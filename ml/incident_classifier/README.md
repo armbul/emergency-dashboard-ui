@@ -28,6 +28,12 @@ Use `compare-seeds` to repeat the training-only comparison across distinct seeds
 Read [the multi-seed guide](MULTI_SEED_COMPARISON.md) for mean and range summaries,
 paired model differences, recorded results and the limits of this experiment.
 
+## Inspect ensemble uncertainty
+
+The `ensemble-evaluate` command averages neural member scores within training
+folds and reports confidence/review curves. Read [the ensemble guide](ENSEMBLE_REVIEW.md)
+for uncertainty definitions, reproduction steps, measured results and limits.
+
 ## What works
 
 - A trainable embedding layer and two nonlinear hidden layers, implemented in NumPy.

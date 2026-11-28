@@ -47,3 +47,8 @@ jobs:
         run: |
           python -m incident_ml.cli compare-seeds --data data/synthetic_incidents.jsonl --seeds 7 17 > artifacts/multi_seed.json
           python -c "import json; from pathlib import Path; r = json.loads(Path('artifacts/multi_seed.json').read_text()); assert r['training_records'] == 48; assert len(r['runs']) == 2; assert sum(r['accuracy_wins'].values()) == 2; assert len(r['paired_neural_minus_nb']['accuracy']['per_seed']) == 2"
+
+      - name: Exercise ensemble review evaluation
+        run: |
+          python -m incident_ml.cli ensemble-evaluate --data data/synthetic_incidents.jsonl > artifacts/ensemble_review.json
+          python -c "import json; from pathlib import Path; r = json.loads(Path('artifacts/ensemble_review.json').read_text()); assert r['training_records'] == 48; assert len(r['members']) == 3; assert r['ensemble']['metrics']['samples'] == 48; assert all(x['kept'] + x['reviewed'] == 48 for x in r['ensemble']['review_curve'])"

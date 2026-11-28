@@ -125,7 +125,7 @@ partitions, repeatability, default settings and CLI success/error behaviour.
 The full suite now has 41 test methods. CI runs a two-seed example and validates
 the generated report structure alongside the existing pipeline checks.
 
-The next feature is an ensemble uncertainty experiment with an explicit review
-coverage/error comparison on suitable held-out data. An ensemble should be
-evaluated as a distinct model; averaging these cross-validation metrics is not
-an ensemble prediction.
+The [ensemble uncertainty experiment](ENSEMBLE_REVIEW.md) is now available,
+using held-out training folds and explicit confidence/review curves. It evaluates
+mean member probabilities as a distinct model. Averaging the cross-validation
+metrics above is not an ensemble prediction.
